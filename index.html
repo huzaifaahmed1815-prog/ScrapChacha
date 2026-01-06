@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrapChacha | Sell Scrap from Home</title>
+    <meta name="description" content="Sell scrap online in Pakistan. Best rates for Paper, Plastic, Metal, and E-Waste. Free doorstep pickup with ScrapChacha.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-green: #00C853; /* Vibrant Green for Brand */
+            --dark-green: #2E7D32;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --light-bg: #f4f7f6;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo Styling */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-green);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-scrap {
+            font-weight: 900;
+            font-size: 24px;
+            color: #000;
+            letter-spacing: -1px;
+        }
+
+        .logo-chacha {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary-green);
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-btn {
+            background-color: var(--primary-green);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--dark-green);
+        }
+
+        /* Mobile Menu Toggle */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- PAGE SECTIONS (SPA LOGIC) --- */
+        section {
+            display: none; /* Hidden by default */
+            padding: 60px 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-content span {
+            color: var(--primary-green);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        /* --- CATEGORIES --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .cat-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-5px);
+            border-bottom: 4px solid var(--primary-green);
+        }
+
+        .cat-icon {
+            font-size: 40px;
+            color: var(--primary-green);
+            margin-bottom: 15px;
+        }
+
+        .cat-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* --- SCRAP RATES TABLE --- */
+        .rates-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            outline: none;
+        }
+
+        .rates-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .rates-table th, .rates-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .rates-table th {
+            background-color: #f9f9f9;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .rates-table tr:hover {
+            background-color: #f1f8e9;
+        }
+
+        .price-tag {
+            font-weight: 700;
+            color: var(--dark-green);
+        }
+
+        .unit-tag {
+            font-size: 0.85rem;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #555;
+        }
+
+        /* --- HOW IT WORKS --- */
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .step-item {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--primary-green);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        /* --- SCHEDULE PICKUP FORM --- */
+        .form-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        /* --- BLOG --- */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .blog-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .blog-content a {
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.1);
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-green);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* --- MODAL (Toast) --- */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-left: 5px solid var(--primary-green);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast i {
+            color: var(--primary-green);
+            font-size: 24px;
+        }
+
+        /* --- ADMIN PANEL (SIMULATION) --- */
+        .admin-panel {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .admin-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #777;
+        }
+        
+        .admin-tab.active {
+            color: var(--primary-green);
+            border-bottom: 2px solid var(--primary-green);
+            margin-bottom: -12px;
+        }
+
+        .admin-login-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            width: 300px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 40px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="brand-logo" onclick="app.navTo('home')">
+                <!-- Logo Image from User Prompt -->
+                <img src="https://z-cdn-media.chatglm.cn/files/97b4caf1-18b0-470a-acb3-b71167ac58a1.png?auth_key=1867685745-750a34f35f924f8b854399d28c5ce12a-0-3a23f197109c933430237d541f361f88" alt="ScrapChacha Character" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-scrap">SCRAP</span>
+                    <span class="logo-chacha">CHACHA</span>
+                </div>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="app.navTo('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="app.navTo('rates')">Rates</a></li>
+                <li><a href="#" onclick="app.navTo('schedule')">Schedule Pickup</a></li>
+                <li><a href="#" onclick="app.navTo('about')">About Us</a></li>
+                <li><a href="#" onclick="app.navTo('blog')">Blog</a></li>
+                <li><a href="#" onclick="app.navTo('contact')">Contact</a></li>
+                <!-- Updated WhatsApp Link -->
+                <li><a href="https://wa.me/923103863309" target="_blank" class="nav-btn"><i class="fab fa-whatsapp"></i> Book Now</a></li>
+            </ul>
+
+            <div class="hamburger" onclick="app.toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- HOME SECTION -->
+        <section id="home" class="active-section">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Sell Scrap from <span>Home</span></h1>
+                    <p>ScrapChacha offers the best rates for your recyclable materials. Book a pickup, get eco-friendly, and get paid instantly.</p>
+                    <div class="cta-group">
+                        <button class="btn btn-primary" onclick="window.location.href='https://wa.me/923103863309'"><i class="fab fa-whatsapp"></i> WhatsApp Now</button>
+                        <button class="btn btn-outline" onclick="app.navTo('schedule')"><i class="fas fa-calendar-alt"></i> Schedule Pickup</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2>What We Accept</h2>
+                <p>Turn your waste into wealth</p>
+            </div>
+
+            <div class="category-grid">
+                <div class="cat-card" onclick="app.filterRates('Paper')">
+                    <div class="cat-icon"><i class="fas fa-newspaper"></i></div>
+                    <div class="cat-title">Paper</div>
+                </div>
+                <div class="cat-card" onclick="app.filterRates('Plastic')">
+                    <div class="cat-icon"><i class="fas fa-wine-bottle"></i></div>
+                    <div class="cat-title">Plastic</div>
+                </div>
+                <div class="cat-card" onclick="app.filterRates('Metal')">
+                    <div class="cat-icon"><i class="fas fa-cogs"></i></div>
+                    <div class="cat-title">Metal</div>
+                </div>
+                <div class="cat-card" onclick="app.filterRates('E-Waste')">
+                    <div class="cat-icon"><i class="fas fa-laptop"></i></div>
+                    <div class="cat-title">E-Waste</div>
+                </div>
+                <div class="cat-card" onclick="app.filterRates('Appliances')">
+                    <div class="cat-icon"><i class="fas fa-fan"></i></div>
+                    <div class="cat-title">Appliances</div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="section-title">
+                <h2>How It Works</h2>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>Book Pickup</h3>
+                    <p>Schedule a pickup via our website or WhatsApp.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>We Arrive</h3>
+                    <p>Our team arrives at your doorstep at the chosen time.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>Get Paid</h3>
+                    <p>We weigh scrap and pay you instantly via Cash/Bank.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RATES SECTION -->
+        <section id="rates">
+            <div class="section-title">
+                <h2>Live Scrap Rates</h2>
+                <p>Updated daily. Best prices in PKR.</p>
+            </div>
+
+            <div class="rates-container">
+                <div class="search-box">
+                    <input type="text" id="rateSearch" placeholder="Search item (e.g. Newspaper, Iron)..." onkeyup="app.searchRates()">
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="rates-table">
+                        <thead>
+                            <tr>
+                                <th>Material Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Unit</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ratesTableBody">
+                            <!-- Javascript will populate this -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCHEDULE PICKUP SECTION -->
+        <section id="schedule">
+            <div class="section-title">
+                <h2>Schedule Pickup</h2>
+                <p>Fill the form below and we will contact you to confirm.</p>
+            </div>
+
+            <div class="form-wrapper">
+                <form id="pickupForm" onsubmit="app.handlePickupSubmit(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="p_name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number (WhatsApp)</label>
+                        <input type="tel" id="p_phone" required placeholder="0300 1234567">
+                    </div>
+                    <div class="form-group">
+                        <label>Pickup Address</label>
+                        <textarea id="p_address" rows="3" required placeholder="Street, House #, Area..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Scrap Type</label>
+                        <select id="p_type" required>
+                            <option value="">Select General Category</option>
+                            <option value="Paper">Paper</option>
+                            <option value="Plastic">Plastic</option>
+                            <option value="Metal">Metal (Iron, Steel, Copper)</option>
+                            <option value="E-Waste">E-Waste</option>
+                            <option value="Appliances">Home Appliances</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Estimated Quantity (Approx)</label>
+                        <input type="text" id="p_qty" placeholder="e.g. 10kg, 2 items...">
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Date & Time</label>
+                        <input type="datetime-local" id="p_date" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Confirm Booking</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <div class="section-title">
+                <h2>About ScrapChacha</h2>
+            </div>
+            <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: var(--shadow);">
+                <h3>Our Mission</h3>
+                <p style="margin-bottom: 20px;">At ScrapChacha, our mission is to make recycling easy, rewarding, and accessible for everyone. We believe that waste is just a resource in the wrong place.</p>
+                
+                <h3>Who We Are</h3>
+                <p>We are a team of environmental enthusiasts dedicated to cleaning up Pakistan one neighborhood at a time. By providing transparent rates and hassle-free pickup services, we ensure that you contribute to a greener planet while earning extra cash.</p>
+                
+                <br>
+                <h3>Why Choose Us?</h3>
+                <ul style="list-style: disc; padding-left: 20px; color: var(--text-gray);">
+                    <li>Best market rates for all scrap materials.</li>
+                    <li>Instant payment via JazzCash, EasyPaisa, or Cash.</li>
+                    <li>Free doorstep pickup service.</li>
+                    <li>Professional and courteous staff.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- BLOG SECTION -->
+        <section id="blog">
+            <div class="section-title">
+                <h2>Recycling Awareness</h2>
+                <p>Tips and articles on waste management.</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-img" style="background-image: url('https://picsum.photos/seed/recycle1/400/200');"></div>
+                    <div class="blog-content">
+                        <h3>5 Benefits of Recycling Paper</h3>
+                        <p>Recycling one ton of paper saves 17 trees and 7,000 gallons of water. Learn more...</p>
+                        <br>
+                        <a href="#">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-img" style="background-image: url('https://picsum.photos/seed/recycle2/400/200');"></div>
+                    <div class="blog-content">
+                        <h3>How to Prepare E-Waste for Disposal?</h3>
+                        <p>Remove batteries and wipe personal data before selling old laptops and phones.</p>
+                        <br>
+                        <a href="#">Read More</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-img" style="background-image: url('https://picsum.photos/seed/recycle3/400/200');"></div>
+                    <div class="blog-content">
+                        <h3>The Economic Value of Copper Scrap</h3>
+                        <p>Why copper is one of the most valuable metals in the recycling market today.</p>
+                        <br>
+                        <a href="#">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION (UPDATED WITH NEW DETAILS) -->
+        <section id="contact">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>We are here to help you.</p>
+            </div>
+            <div class="form-wrapper" style="text-align: center;">
+                <!-- Updated Phone -->
+                <p style="margin-bottom: 20px;"><i class="fas fa-phone-alt" style="color: var(--primary-green);"></i> 03103863309</p>
+                <!-- Updated WhatsApp -->
+                <p style="margin-bottom: 20px;"><i class="fab fa-whatsapp" style="color: var(--primary-green);"></i> 03103863309</p>
+                <!-- Updated Email -->
+                <p style="margin-bottom: 20px;"><i class="fas fa-envelope" style="color: var(--primary-green);"></i> scrapchacha20@gmail.com</p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                <h3>Our Location</h3>
+                <!-- Updated Address -->
+                <div style="margin-top: 20px; background: #eee; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 8px;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 40px; color: #555; margin-bottom: 10px;"></i>
+                    <p style="color: #333; font-weight: 600;">Unit no 6 Latifabad Hyderabad</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADMIN PANEL (Simulated) -->
+        <section id="admin">
+            <div class="section-title">
+                <h2>Admin Dashboard</h2>
+            </div>
+            <div class="admin-panel">
+                <div class="admin-tabs">
+                    <div class="admin-tab active" onclick="app.switchAdminTab('requests')">Pickup Requests</div>
+                    <div class="admin-tab" onclick="app.switchAdminTab('manage')">Manage Rates</div>
+                </div>
+
+                <div id="admin-requests">
+                    <h3>Recent Pickup Requests</h3>
+                    <div style="overflow-x: auto; margin-top: 20px;">
+                        <table class="rates-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Type</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminRequestsBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="admin-manage" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <h3>Manage Scrap Rates</h3>
+                        <button class="btn btn-primary" onclick="app.addNewRatePrompt()">+ Add New Rate</button>
+                    </div>
+                    <p><em>In this demo, rate edits are temporary (session only) or stored in local storage.</em></p>
+                    <div style="overflow-x: auto;">
+                        <table class="rates-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Price (PKR)</th>
+                                    <th>Unit</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminRatesBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (UPDATED WITH NEW DETAILS) -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>ScrapChacha</h3>
+                    <p>Pakistan's leading doorstep scrap buying service. Sell scrap, get paid, save the planet.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="app.navTo('home')">Home</a></li>
+                        <li><a href="#" onclick="app.navTo('rates')">Scrap Rates</a></li>
+                        <li><a href="#" onclick="app.navTo('schedule')">Schedule Pickup</a></li>
+                        <li><a href="#" onclick="app.navTo('blog')">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:scrapchacha20@gmail.com">scrapchacha20@gmail.com</a></li>
+                        <li><a href="https://wa.me/923103863309">03103863309</a></li>
+                    </ul>
+                    <div class="social-icons" style="margin-top: 15px;">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 ScrapChacha. All rights reserved. | <a href="#" onclick="app.adminLogin()">Admin (Demo)</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Action Successful!</span>
+    </div>
+
+    <!-- Admin Login Overlay -->
+    <div id="adminLoginModal" class="admin-login-overlay" style="display: none;">
+        <div class="login-box">
+            <h3 style="margin-bottom: 20px;">Admin Login</h3>
+            <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Password: admin</p>
+            <input type="password" id="adminPass" placeholder="Password" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+            <button class="btn btn-primary" onclick="app.checkAdminLogin()">Login</button>
+            <button class="btn btn-outline" onclick="document.getElementById('adminLoginModal').style.display='none'" style="margin-top: 10px;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const app = {
+            // Data Scraped from prompt
+            defaultRates: [
+                { name: "Newspaper", category: "Paper", price: 40, unit: "KG" },
+                { name: "Office Paper", category: "Paper", price: 40, unit: "KG" },
+                { name: "Copies / Books", category: "Paper", price: 45, unit: "KG" },
+                { name: "Cardboard", category: "Paper", price: 30, unit: "KG" },
+                { name: "Iron", category: "Metal", price: 120, unit: "KG" },
+                { name: "Steel", category: "Metal", price: 180, unit: "KG" },
+                { name: "Aluminium", category: "Metal", price: 450, unit: "KG" },
+                { name: "Copper", category: "Metal", price: 2400, unit: "KG" },
+                { name: "Plastic", category: "Plastic", price: 60, unit: "KG" },
+                { name: "Split AC Copper Coil", category: "Appliances", price: 15000, unit: "PIECE" },
+                { name: "Window AC 1.5 Ton", category: "Appliances", price: 12000, unit: "PIECE" },
+                { name: "AC 1 Ton (Copper)", category: "Appliances", price: 12000, unit: "PIECE" },
+                { name: "AC 2 Ton (Copper)", category: "Appliances", price: 15000, unit: "PIECE" },
+                { name: "Single Door Fridge", category: "Appliances", price: 8000, unit: "PIECE" },
+                { name: "Double Door Fridge", category: "Appliances", price: 12000, unit: "PIECE" },
+                { name: "Iron Cooler", category: "Appliances", price: 80, unit: "KG" },
+                { name: "Ceiling Fan", category: "Appliances", price: 350, unit: "KG" },
+                { name: "Motors (Copper)", category: "Appliances", price: 300, unit: "KG" },
+                { name: "Inverter / Stabilizer", category: "Appliances", price: 306, unit: "KG" },
+                { name: "UPS", category: "Appliances", price: 500, unit: "PIECE" },
+                { name: "Battery (Inverter)", category: "Appliances", price: 305, unit: "KG" },
+                { name: "Geyser", category: "Appliances", price: 7000, unit: "PIECE" },
+                { name: "Scrap Tablet", category: "E-Waste", price: 120, unit: "PIECE" },
+                { name: "Scrap Laptop", category: "E-Waste", price: 1000, unit: "PIECE" },
+                { name: "CRT Monitor", category: "E-Waste", price: 450, unit: "PIECE" },
+                { name: "LCD Monitor", category: "E-Waste", price: 60, unit: "KG" },
+                { name: "Bike", category: "Other", price: 7500, unit: "PIECE" },
+                { name: "Car", category: "Other", price: 200000, unit: "PIECE" }
+            ],
+            
+            rates: [],
+            requests: [],
+
+            init: function() {
+                // Load rates from local storage or use default
+                const storedRates = localStorage.getItem('scrapRates');
+                if (storedRates) {
+                    this.rates = JSON.parse(storedRates);
+                } else {
+                    this.rates = [...this.defaultRates];
+                }
+
+                // Load requests
+                const storedRequests = localStorage.getItem('scrapRequests');
+                if (storedRequests) {
+                    this.requests = JSON.parse(storedRequests);
+                }
+
+                this.renderRates();
+                this.renderAdminRequests();
+                this.renderAdminRates();
+            },
+
+            // Navigation
+            navTo: function(sectionId) {
+                // Hide all sections
+                document.querySelectorAll('section').forEach(sec => sec.classList.remove('active-section'));
+                // Show target
+                document.getElementById(sectionId).classList.add('active-section');
+                
+                // Update active link
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                // Simple logic to highlight nav item (approximate match)
+                // In a real app, bind IDs strictly
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+
+                // Close mobile menu if open
+                document.getElementById('navLinks').classList.remove('active');
+            },
+
+            toggleMenu: function() {
+                document.getElementById('navLinks').classList.toggle('active');
+            },
+
+            // Rates Logic
+            renderRates: function(filterText = '') {
+                const tbody = document.getElementById('ratesTableBody');
+                tbody.innerHTML = '';
+
+                const filtered = this.rates.filter(item => 
+                    item.name.toLowerCase().includes(filterText.toLowerCase()) || 
+                    item.category.toLowerCase().includes(filterText.toLowerCase())
+                );
+
+                filtered.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${item.name}</strong></td>
+                        <td><span style="font-size:0.85rem; color:#777;">${item.category}</span></td>
+                        <td class="price-tag">Rs ${item.price.toLocaleString()}</td>
+                        <td><span class="unit-tag">${item.unit}</span></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            },
+
+            searchRates: function() {
+                const query = document.getElementById('rateSearch').value;
+                this.renderRates(query);
+            },
+
+            filterRates: function(category) {
+                this.navTo('rates');
+                document.getElementById('rateSearch').value = category;
+                this.renderRates(category);
+            },
+
+            // Pickup Logic
+            handlePickupSubmit: function(e) {
+                e.preventDefault();
+                
+                const request = {
+                    id: Date.now(),
+                    date: new Date().toLocaleString(),
+                    name: document.getElementById('p_name').value,
+                    phone: document.getElementById('p_phone').value,
+                    address: document.getElementById('p_address').value,
+                    type: document.getElementById('p_type').value,
+                    qty: document.getElementById('p_qty').value,
+                    preferredTime: document.getElementById('p_date').value,
+                    status: 'Pending'
+                };
+
+                this.requests.push(request);
+                localStorage.setItem('scrapRequests', JSON.stringify(this.requests));
+
+                this.showToast("Pickup Scheduled Successfully!");
+                document.getElementById('pickupForm').reset();
+                this.renderAdminRequests();
+            },
+
+            showToast: function(msg) {
+                const toast = document.getElementById('toast');
+                document.getElementById('toastMsg').innerText = msg;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            },
+
+            // Admin Logic
+            adminLogin: function() {
+                document.getElementById('adminLoginModal').style.display = 'flex';
+            },
+
+            checkAdminLogin: function() {
+                const pass = document.getElementById('adminPass').value;
+                if(pass === 'admin') {
+                    document.getElementById('adminLoginModal').style.display = 'none';
+                    this.navTo('admin');
+                } else {
+                    alert('Wrong password (Try: admin)');
+                }
+            },
+
+            renderAdminRequests: function() {
+                const tbody = document.getElementById('adminRequestsBody');
+                tbody.innerHTML = '';
+                // Show latest first
+                [...this.requests].reverse().forEach(req => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${req.date}</td>
+                        <td>${req.name}</td>
+                        <td>${req.phone}</td>
+                        <td>${req.type}</td>
+                        <td>${req.address}</td>
+                        <td>
+                            <button class="btn btn-primary" style="padding:5px 10px; font-size:0.8rem;" onclick="app.whatsappClient('${req.phone}', '${req.name}')">
+                                <i class="fab fa-whatsapp"></i> Contact
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            },
+
+            whatsappClient: function(phone, name) {
+                // Remove leading 0 or spaces
+                let p = phone.replace(/\D/g, '');
+                if(p.startsWith('0')) p = '92' + p.substring(1);
+                window.open(`https://wa.me/${p}?text=Hello ${name}, this is ScrapChacha confirming your pickup.`, '_blank');
+            },
+
+            renderAdminRates: function() {
+                const tbody = document.getElementById('adminRatesBody');
+                tbody.innerHTML = '';
+                this.rates.forEach((item, index) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${item.name}</td>
+                        <td><input type="number" value="${item.price}" style="width:80px; padding:5px;" onchange="app.updateRate(${index}, this.value)"></td>
+                        <td>${item.unit}</td>
+                        <td><button style="background:red; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" onclick="app.deleteRate(${index})">X</button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            },
+
+            updateRate: function(index, newPrice) {
+                this.rates[index].price = parseInt(newPrice);
+                localStorage.setItem('scrapRates', JSON.stringify(this.rates));
+                this.renderRates(); // Refresh frontend view
+                this.showToast('Price Updated');
+            },
+
+            deleteRate: function(index) {
+                if(confirm('Delete this rate?')) {
+                    this.rates.splice(index, 1);
+                    localStorage.setItem('scrapRates', JSON.stringify(this.rates));
+                    this.renderRates();
+                    this.renderAdminRates();
+                }
+            },
+
+            addNewRatePrompt: function() {
+                const name = prompt("Enter Item Name:");
+                if(!name) return;
+                const price = prompt("Enter Price (PKR):");
+                const unit = prompt("Enter Unit (KG or PIECE):");
+                
+                if(name && price && unit) {
+                    this.rates.push({
+                        name: name,
+                        category: 'Custom',
+                        price: parseInt(price),
+                        unit: unit.toUpperCase()
+                    });
+                    localStorage.setItem('scrapRates', JSON.stringify(this.rates));
+                    this.renderRates();
+                    this.renderAdminRates();
+                }
+            },
+
+            switchAdminTab: function(tab) {
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                event.target.classList.add('active');
+
+                if(tab === 'requests') {
+                    document.getElementById('admin-requests').style.display = 'block';
+                    document.getElementById('admin-manage').style.display = 'none';
+                } else {
+                    document.getElementById('admin-requests').style.display = 'none';
+                    document.getElementById('admin-manage').style.display = 'block';
+                }
+            }
+        };
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+    </script>
+</body>
+</html>
